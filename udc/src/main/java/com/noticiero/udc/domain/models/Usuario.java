@@ -37,4 +37,48 @@ public class Usuario {
             this.status = UserStatus.INACTIVO;
         }
     }
+
+    public void Activar() {
+        this.status = UserStatus.ACTIVO;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public UserName getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(UserName nombre) {
+        this.nombre = nombre;
+    }
+
+    public UserEmail getEmail() {
+        return email;
+    }
+
+    public void setEmail(UserEmail email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public UserStatus getStatus() {
+        return status;
+    }
 }
