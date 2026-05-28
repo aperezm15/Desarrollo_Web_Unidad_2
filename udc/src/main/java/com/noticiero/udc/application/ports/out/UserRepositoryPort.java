@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface UserRepositoryPort {
     Usuario save (Usuario usuario);
     Optional<Usuario> finById (Long id);
-    Optional<Usuario> finByEmail (UserEmail email);
+    Optional<Usuario> findByEmail (UserEmail email);
     List<Usuario> findAll ();
     void deleteById (Long id);
 }
