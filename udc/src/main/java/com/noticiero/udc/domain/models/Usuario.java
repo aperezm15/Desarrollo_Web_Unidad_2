@@ -12,14 +12,16 @@ public class Usuario {
     private String password;
     private UserRole role;
     private UserStatus status;
+    private String verificationToken;
 
-    public Usuario(Long id, UserName nombre, UserEmail email, String password, UserRole role, UserStatus status) {
+    public Usuario(Long id, UserName nombre, UserEmail email, String password, UserRole role, UserStatus status, String verificationToken) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
         this.password = password;
         setRole(role);
         setStatus(status);
+        this.verificationToken = verificationToken;
     }
 
     public void setRole(UserRole role) {
@@ -34,12 +36,13 @@ public class Usuario {
         if (status != null) {
             this.status = status;
         } else {
-            this.status = UserStatus.INACTIVO;
+            this.status = UserStatus.PENDIENTE;
         }
     }
 
-    public void Activar() {
+    public void ActivarCuenta() {
         this.status = UserStatus.ACTIVO;
+        this.verificationToken = null;
     }
 
     public Long getId() {
@@ -80,5 +83,13 @@ public class Usuario {
 
     public UserStatus getStatus() {
         return status;
+    }
+
+    public String getVerificationToken() {
+        return verificationToken;
+    }
+
+    public void setVerificationToken(String verificationToken) {
+        this.verificationToken = verificationToken;
     }
 }
