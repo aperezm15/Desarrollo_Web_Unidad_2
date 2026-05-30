@@ -36,7 +36,7 @@
                     </td>
                     <td>
                             <span th:text="${user.status}"
-                                  th:classappend="${user.status == 'ACTIVE' ? 'badge bg-success' : 'badge bg-warning text-dark'}">STATUS</span>
+                                  th:classappend="${user.status == 'ACTIVO' ? 'badge bg-success' : 'badge bg-warning text-dark'}">STATUS</span>
                     </td>
                     <td>
                         <a th:href="@{/usuarios/editar/{id}(id=${user.id})}" class="btn btn-sm btn-warning">Editar</a>

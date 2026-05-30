@@ -43,8 +43,8 @@
                         <div class="mb-3">
                             <label for="role" class="form-label">Rol del Usuario:</label>
                             <select id="role" th:field="*{role}" class="form-select">
-                                <option value="READER">Lector (Por defecto)</option>
-                                <option value="JOURNALIST">Periodista</option>
+                                <option value="LECTOR">Lector (Por defecto)</option>
+                                <option value="PERIODISTA">Periodista</option>
                                 <option value="ADMIN">Administrador</option>
                             </select>
                         </div>
@@ -52,9 +52,9 @@
                         <div class="mb-3" th:if="${userDto.id != null}">
                             <label for="status" class="form-label">Estado de la Cuenta:</label>
                             <select id="status" th:field="*{status}" class="form-select">
-                                <option value="PENDING">Pendiente</option>
-                                <option value="ACTIVE">Activo</option>
-                                <option value="INACTIVE">Inactivo</option>
+                                <option value="PENDIENTE">Pendiente</option>
+                                <option value="ACTIVO">Activo</option>
+                                <option value="INACTIVO">Inactivo</option>
                             </select>
                         </div>
 
