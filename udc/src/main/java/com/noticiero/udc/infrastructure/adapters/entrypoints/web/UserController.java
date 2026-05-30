@@ -1,6 +1,7 @@
 package com.noticiero.udc.infrastructure.adapters.entrypoints.web;
 
 import com.noticiero.udc.application.ports.in.UserCrudUseCase;
+import com.noticiero.udc.application.services.UserService;
 import com.noticiero.udc.domain.models.Usuario;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +16,13 @@ public class UserController {
 
     private final UserCrudUseCase userCrudUseCase;
     private final UserWebMapper userWebMapper;
+    private final UserService userService;
 
 
-    public UserController(UserCrudUseCase userCrudUseCase, UserWebMapper userWebMapper) {
+    public UserController(UserCrudUseCase userCrudUseCase, UserWebMapper userWebMapper, UserService userService) {
         this.userCrudUseCase = userCrudUseCase;
         this.userWebMapper = userWebMapper;
+        this.userService = userService;
     }
 
 
@@ -86,5 +89,19 @@ public class UserController {
             model.addAttribute("error", ex.getMessage());
         }
         return "redirect:/usuarios";
+    }
+
+    @GetMapping("/verificar")
+    public String verificarCuenta(@RequestParam("token") String token, Model model) {
+        try {
+            // Ejecuta el caso de uso que cambia el estado a ACTIVO
+            userService.verificarCuenta(token);
+
+            // Redirige al listado enviando una señal de éxito
+            return "redirect:/usuarios?verificado=true";
+        } catch (Exception ex) {
+            // Si el token no existe o está mal, vuelve al listado con el mensaje de error
+            return "redirect:/usuarios?errorToken=" + ex.getMessage();
+        }
     }
 }

@@ -31,6 +31,7 @@ public class UserWebMapper {
                 dto.getPassword(),
                 mappedRole,
                 mappedStatus
+
         );
     }
 

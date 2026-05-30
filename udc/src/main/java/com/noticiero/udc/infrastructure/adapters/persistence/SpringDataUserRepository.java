@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface SpringDataUserRepository extends JpaRepository<UserEntity, Long> {
     Optional<UserEntity> findByEmail(String email);
+    Optional<UserEntity> findByVerificationToken(String token);
 }

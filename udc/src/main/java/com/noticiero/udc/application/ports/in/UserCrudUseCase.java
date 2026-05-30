@@ -10,5 +10,6 @@ public interface UserCrudUseCase {
     Usuario ObtenerPorId(Long id);
     void eliminarPorId (Long id);
     List<Usuario> ListarUsuarios ();
+    void verificarCuenta(String token);
 
 }

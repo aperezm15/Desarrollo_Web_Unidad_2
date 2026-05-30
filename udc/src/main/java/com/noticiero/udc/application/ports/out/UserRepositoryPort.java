@@ -12,4 +12,5 @@ public interface UserRepositoryPort {
     Optional<Usuario> findByEmail (UserEmail email);
     List<Usuario> findAll ();
     void deleteById (Long id);
+    Optional<Usuario> buscarPorToken (String token);
 }

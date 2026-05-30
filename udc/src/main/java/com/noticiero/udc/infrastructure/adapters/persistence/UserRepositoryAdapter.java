@@ -69,4 +69,9 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
     public void deleteById(Long id) {
         springDataUserRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Usuario> buscarPorToken(String token) {
+        return springDataUserRepository.findByVerificationToken(token).map(userPersistenceMapper::toDomain);
+    }
 }

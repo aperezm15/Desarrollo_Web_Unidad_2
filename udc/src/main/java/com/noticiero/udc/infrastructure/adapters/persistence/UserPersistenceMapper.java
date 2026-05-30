@@ -1,6 +1,5 @@
 package com.noticiero.udc.infrastructure.adapters.persistence;
 
-
 import com.noticiero.udc.domain.models.Usuario;
 import com.noticiero.udc.domain.valueobjects.UserEmail;
 import com.noticiero.udc.domain.valueobjects.UserName;
@@ -12,7 +11,7 @@ public class UserPersistenceMapper {
     public UserEntity toEntity(Usuario domain) {
         if (domain == null) return null;
 
-        return new UserEntity(
+        UserEntity entity = new UserEntity(
                 domain.getId(),
                 domain.getNombre().getValue(),
                 domain.getEmail().getValue(),
@@ -20,7 +19,9 @@ public class UserPersistenceMapper {
                 domain.getRole(),
                 domain.getStatus()
         );
-
+        // PASAMOS EL TOKEN DEL DOMINIO A LA ENTIDAD ANTES DE GUARDAR
+        entity.setVerificationToken(domain.getVerificationToken());
+        return entity;
     }
 
     public Usuario toDomain(UserEntity entity) {
@@ -32,7 +33,8 @@ public class UserPersistenceMapper {
                 new UserEmail(entity.getEmail()),
                 entity.getPassword(),
                 entity.getRole(),
-                entity.getStatus()
+                entity.getStatus(),
+                entity.getVerificationToken() // YA TIENE LOS 7 PARÁMETROS PERFECTO
         );
     }
 }

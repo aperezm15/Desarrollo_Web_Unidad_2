@@ -30,6 +30,9 @@ public class UserEntity {
     @Column(nullable = false, length = 20)
     private UserStatus status;
 
+    @Column(name = "verification_token")
+    private String verificationToken;
+
     public UserEntity() {}
 
     public UserEntity(Long id, String nombre, String email, String password, UserRole role, UserStatus status) {
@@ -87,5 +90,13 @@ public class UserEntity {
 
     public void setStatus(UserStatus status) {
         this.status = status;
+    }
+
+    public String getVerificationToken() {
+        return verificationToken;
+    }
+
+    public void setVerificationToken(String verificationToken) {
+        this.verificationToken = verificationToken;
     }
 }
