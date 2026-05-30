@@ -24,6 +24,10 @@ public class Usuario {
         this.verificationToken = verificationToken;
     }
 
+    public Usuario(Long id, UserName nombre, UserEmail email, String password, UserRole role, UserStatus status) {
+        this(id, nombre, email, password, role, status, null);
+    }
+
     public void setRole(UserRole role) {
         if (role != null) {
             this.role = role;
