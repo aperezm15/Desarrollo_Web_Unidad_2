@@ -26,8 +26,8 @@ public class UserService implements UserCrudUseCase {
 
     @Override
     public Usuario ObtenerPorId(Long id) {
-        if (userRepositoryPort.finById(id).isPresent()) {
-            return userRepositoryPort.finById(id).get();
+        if (userRepositoryPort.findById(id).isPresent()) {
+            return userRepositoryPort.findById(id).get();
         } else {
             throw new InvalidUserIdException("El id "+id+ " de usuario no existe en el sistema");
         }
@@ -36,7 +36,7 @@ public class UserService implements UserCrudUseCase {
 
     @Override
     public Usuario actualizarUsuario(Usuario usuario) {
-        if (userRepositoryPort.finById(usuario.getId()).isPresent()) {
+        if (userRepositoryPort.findById(usuario.getId()).isPresent()) {
             return userRepositoryPort.save(usuario);
         } else {
             throw new InvalidUserIdException("El usuario que se quiere actualizar con el id "+usuario.getId()+" no existe en el sistema");
@@ -50,7 +50,7 @@ public class UserService implements UserCrudUseCase {
 
     @Override
     public void eliminarPorId(Long id) {
-       if (userRepositoryPort.finById(id).isPresent()) {
+       if (userRepositoryPort.findById(id).isPresent()) {
            userRepositoryPort.deleteById(id);
        } else {
            throw new InvalidUserIdException("No se puede eliminar el usuario con id "+ id);
