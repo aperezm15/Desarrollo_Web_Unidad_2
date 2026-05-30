@@ -16,11 +16,12 @@ public class UserController {
     private final UserCrudUseCase userCrudUseCase;
     private final UserWebMapper userWebMapper;
 
-    // Inyección del caso de uso (puerto de entrada) y el mapper web
+
     public UserController(UserCrudUseCase userCrudUseCase, UserWebMapper userWebMapper) {
         this.userCrudUseCase = userCrudUseCase;
         this.userWebMapper = userWebMapper;
     }
+
 
     @GetMapping
     public String listarUsuarios(Model model) {
@@ -32,7 +33,7 @@ public class UserController {
         }
 
         model.addAttribute("usuarios", dtos);
-        return "usuarios/lista";
+        return "usuarios/lista"; // Redirecciona a src/main/resources/templates/usuarios/lista.html
     }
 
 
@@ -63,6 +64,7 @@ public class UserController {
         }
     }
 
+
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEditar(@PathVariable("id") Long id, Model model) {
         try {
@@ -75,7 +77,6 @@ public class UserController {
             return "redirect:/usuarios";
         }
     }
-
 
     @GetMapping("/eliminar/{id}")
     public String eliminarUsuario(@PathVariable("id") Long id, Model model) {
