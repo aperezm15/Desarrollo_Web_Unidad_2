@@ -32,7 +32,7 @@ public class NoticiaEntity {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "periodista_id", nullable = false)
-    private Usuario usuario;
+    private UserEntity periodista;
 
     @Column(name = "programa_emite")
     private String programaEmite;
@@ -49,7 +49,7 @@ public class NoticiaEntity {
     public NoticiaEntity() {}
 
     public NoticiaEntity(Long id, String categoria, LocalDate fecha, String pais, String departamento,
-                         String ciudad, Usuario usuario, String programaEmite, LocalDateTime javaFechaEmision,
+                         String ciudad, UserEntity periodista, String programaEmite, LocalDateTime javaFechaEmision,
                          String descripcion, String nivelPublico) {
         this.id = id;
         this.categoria = categoria;
@@ -57,7 +57,7 @@ public class NoticiaEntity {
         this.pais = pais;
         this.departamento = departamento;
         this.ciudad = ciudad;
-        this.usuario = usuario;
+        this.periodista = periodista;
         this.programaEmite = programaEmite;
         this.javaFechaEmision = javaFechaEmision;
         this.descripcion = descripcion;
@@ -112,12 +112,12 @@ public class NoticiaEntity {
         this.ciudad = ciudad;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public UserEntity getPeriodista() {
+        return periodista;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setPeriodista(UserEntity periodista) {
+        this.periodista = periodista;
     }
 
     public String getProgramaEmite() {

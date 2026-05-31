@@ -10,7 +10,7 @@ public class Noticia {
     private String pais;
     private String departamento;
     private String ciudad;
-    private Usuario usuario;
+    private Usuario periodista;
     private String programaEmite;
     private LocalDateTime fechaEmite;
     private String descripcion;
@@ -19,7 +19,7 @@ public class Noticia {
     public Noticia() {}
 
     public Noticia(Long id, String categoria, LocalDate fecha, String pais, String departamento,
-                   String ciudad, Usuario usuario, String programaEmite, LocalDateTime fechaEmite,
+                   String ciudad, Usuario periodista, String programaEmite, LocalDateTime fechaEmite,
                    String descripcion, String nivelPublico) {
         this.id = id;
         this.categoria = categoria;
@@ -27,7 +27,7 @@ public class Noticia {
         this.pais = pais;
         this.departamento = departamento;
         this.ciudad = ciudad;
-        this.usuario = usuario;
+        this.periodista = periodista;
         this.programaEmite = programaEmite;
         this.fechaEmite = fechaEmite;
         this.descripcion = descripcion;
@@ -83,12 +83,12 @@ public class Noticia {
         this.ciudad = ciudad;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Usuario getPeriodista() {
+        return periodista;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setPeriodista(Usuario periodista) {
+        this.periodista = periodista;
     }
 
     public String getProgramaEmite() {
