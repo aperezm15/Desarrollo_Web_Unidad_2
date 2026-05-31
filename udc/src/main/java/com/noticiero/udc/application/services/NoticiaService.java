@@ -23,7 +23,7 @@ public class NoticiaService implements NoticiaUseCase {
     public Noticia actualizarNoticia(Noticia noticia) {
         return noticiaRepositoryPort.actualizar(noticia);
     }
-    
+
     @Override
     public List<Noticia> listarNoticias() {
         return noticiaRepositoryPort.obtenerTodas();
