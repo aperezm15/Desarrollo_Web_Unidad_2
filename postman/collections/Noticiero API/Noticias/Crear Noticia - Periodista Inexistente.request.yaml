@@ -1,0 +1,32 @@
+$kind: http-request
+name: 'Crear Noticia - Periodista Inexistente'
+method: POST
+url: '{{baseUrl}}/api/noticias'
+order: 6000
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Accept
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "categoria": "Política",
+      "fecha": "2026-05-31",
+      "pais": "Colombia",
+      "departamento": "Bolívar",
+      "ciudad": "Cartagena",
+      "idPeriodista": 99999,
+      "programaEmite": "Test",
+      "fechaEmision": "2026-05-31T08:00:00",
+      "descripcion": "Prueba con periodista inexistente",
+      "nivelPublico": "Nacional"
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 400", function () {
+          pm.response.to.have.status(400);
+      });

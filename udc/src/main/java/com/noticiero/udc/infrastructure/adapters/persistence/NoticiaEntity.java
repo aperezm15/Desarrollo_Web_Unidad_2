@@ -30,7 +30,7 @@ public class NoticiaEntity {
     @Column(nullable = false)
     private String ciudad;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "periodista_id", nullable = false)
     private UserEntity periodista;
 

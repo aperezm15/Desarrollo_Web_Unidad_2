@@ -1,0 +1,21 @@
+$kind: http-request
+name: Obtener Noticia por ID
+method: GET
+url: '{{baseUrl}}/api/noticias/{{noticiaId}}'
+order: 3000
+headers:
+  - key: Accept
+    value: application/json
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200", function () {
+          pm.response.to.have.status(200);
+      });
+      pm.test("Response has field id", function () {
+          pm.expect(pm.response.json()).to.have.property("id");
+      });
+      pm.test("Response field pais equals Colombia", function () {
+          pm.expect(pm.response.json().pais).to.eql("Colombia");
+      });

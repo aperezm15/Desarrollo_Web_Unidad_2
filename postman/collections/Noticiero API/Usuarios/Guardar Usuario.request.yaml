@@ -1,0 +1,25 @@
+$kind: http-request
+name: Guardar Usuario
+method: POST
+url: '{{baseUrl}}/usuarios/guardar'
+order: 3000
+body:
+  type: urlencoded
+  content:
+    - key: nombre
+      value: Juan Pérez
+    - key: email
+      value: juan.perez@test.com
+    - key: password
+      value: Password123
+    - key: role
+      value: PERIODISTA
+    - key: status
+      value: PENDIENTE
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200 or 302", function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 302]);
+      });

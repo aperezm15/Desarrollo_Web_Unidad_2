@@ -1,0 +1,12 @@
+$kind: http-request
+name: Eliminar Usuario
+method: GET
+url: '{{baseUrl}}/usuarios/eliminar/1'
+order: 5000
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200 or 302", function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 302]);
+      });

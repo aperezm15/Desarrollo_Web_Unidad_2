@@ -1,0 +1,15 @@
+$kind: http-request
+name: Obtener Noticia Inexistente
+method: GET
+url: '{{baseUrl}}/api/noticias/99999'
+order: 8000
+headers:
+  - key: Accept
+    value: application/json
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 404", function () {
+          pm.response.to.have.status(404);
+      });

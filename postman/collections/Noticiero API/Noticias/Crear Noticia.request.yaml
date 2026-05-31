@@ -1,0 +1,40 @@
+$kind: http-request
+name: Crear Noticia
+method: POST
+url: '{{baseUrl}}/api/noticias'
+order: 2000
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Accept
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "categoria": "Política",
+      "fecha": "2026-05-31",
+      "pais": "Colombia",
+      "departamento": "Bolívar",
+      "ciudad": "Cartagena",
+      "idPeriodista": {{periodistaId}},
+      "programaEmite": "Noticiero Nacional",
+      "fechaEmision": "2026-05-31T08:00:00",
+      "descripcion": "Noticia de prueba creada desde Postman",
+      "nivelPublico": "Nacional"
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 201", function () {
+          pm.response.to.have.status(201);
+      });
+      pm.test("Response has field id", function () {
+          var json = pm.response.json();
+          pm.expect(json).to.have.property("id");
+          pm.collectionVariables.set("noticiaId", json.id);
+      });
+      pm.test("Response field categoria equals Política", function () {
+          pm.expect(pm.response.json().categoria).to.eql("Política");
+      });

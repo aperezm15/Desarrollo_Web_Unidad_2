@@ -1,0 +1,8 @@
+# Use this workspace to collaborate
+workspace:
+  id: 3cc534e5-2877-4d34-8919-188099da7c6a
+
+localResources:
+  docs:
+    - ..\udc\HELP.md
+    - ..\README.md

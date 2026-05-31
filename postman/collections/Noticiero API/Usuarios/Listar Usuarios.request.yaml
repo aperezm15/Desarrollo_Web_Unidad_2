@@ -1,0 +1,12 @@
+$kind: http-request
+name: Listar Usuarios
+method: GET
+url: '{{baseUrl}}/usuarios'
+order: 1000
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200", function () {
+          pm.response.to.have.status(200);
+      });

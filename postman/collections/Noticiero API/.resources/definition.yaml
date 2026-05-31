@@ -1,0 +1,11 @@
+$kind: collection
+name: Noticiero API
+variables:
+  - key: baseUrl
+    value: 'http://localhost:8080'
+  - key: noticiaId
+    value: ''
+  - key: periodistaId
+    value: '1'
+  - key: verificationToken
+    value: ''

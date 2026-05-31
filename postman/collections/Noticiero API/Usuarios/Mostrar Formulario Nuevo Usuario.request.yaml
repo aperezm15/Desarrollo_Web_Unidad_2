@@ -1,0 +1,12 @@
+$kind: http-request
+name: Mostrar Formulario Nuevo Usuario
+method: GET
+url: '{{baseUrl}}/usuarios/nuevo'
+order: 2000
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200", function () {
+          pm.response.to.have.status(200);
+      });

@@ -1,7 +1,9 @@
 package com.noticiero.udc.infrastructure.adapters.persistence;
 
 import com.noticiero.udc.domain.models.Noticia;
+import org.springframework.stereotype.Component;
 
+@Component
 public class NoticiaPersistenceMapper {
     private final UserPersistenceMapper userMapper;
 

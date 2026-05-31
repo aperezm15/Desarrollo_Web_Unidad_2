@@ -1,0 +1,12 @@
+$kind: http-request
+name: Verificar Cuenta
+method: GET
+url: '{{baseUrl}}/usuarios/verificar?token={{verificationToken}}'
+order: 6000
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200 or 302", function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 302]);
+      });

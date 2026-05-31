@@ -1,0 +1,12 @@
+$kind: http-request
+name: Editar Usuario
+method: GET
+url: '{{baseUrl}}/usuarios/editar/1'
+order: 4000
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200 or 302", function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 302]);
+      });

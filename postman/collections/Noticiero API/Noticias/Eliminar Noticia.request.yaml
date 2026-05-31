@@ -1,0 +1,15 @@
+$kind: http-request
+name: Eliminar Noticia
+method: DELETE
+url: '{{baseUrl}}/api/noticias/{{noticiaId}}'
+order: 5000
+headers:
+  - key: Accept
+    value: application/json
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 204", function () {
+          pm.response.to.have.status(204);
+      });

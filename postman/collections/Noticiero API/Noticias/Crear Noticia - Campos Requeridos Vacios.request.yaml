@@ -1,0 +1,30 @@
+$kind: http-request
+name: 'Crear Noticia - Campos Requeridos Vacíos'
+method: POST
+url: '{{baseUrl}}/api/noticias'
+order: 7000
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Accept
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "categoria": "",
+      "fecha": null,
+      "pais": "",
+      "departamento": "",
+      "ciudad": "",
+      "idPeriodista": null,
+      "descripcion": "",
+      "nivelPublico": ""
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 400", function () {
+          pm.response.to.have.status(400);
+      });

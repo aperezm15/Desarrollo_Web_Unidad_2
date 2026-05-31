@@ -1,0 +1,35 @@
+$kind: http-request
+name: Actualizar Noticia
+method: PUT
+url: '{{baseUrl}}/api/noticias/{{noticiaId}}'
+order: 4000
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Accept
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "categoria": "Deportes",
+      "fecha": "2026-05-31",
+      "pais": "Colombia",
+      "departamento": "Bolívar",
+      "ciudad": "Cartagena",
+      "idPeriodista": {{periodistaId}},
+      "programaEmite": "Deportes en Vivo",
+      "fechaEmision": "2026-05-31T10:00:00",
+      "descripcion": "Noticia actualizada desde Postman",
+      "nivelPublico": "Regional"
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200", function () {
+          pm.response.to.have.status(200);
+      });
+      pm.test("Response field categoria equals Deportes", function () {
+          pm.expect(pm.response.json().categoria).to.eql("Deportes");
+      });
