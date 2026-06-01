@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Publicar Noticia | UDC</title>
+</head>
+<body>
+<section>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow border-0 rounded-4">
+                <div class="card-header bg-primary text-white p-4 rounded-top-4" style="background-color: #003366 !important;">
+                    <h3 class="mb-0 fw-bold"><i class="fa-solid fa-pen-nib me-2"></i>Nueva Noticia</h3>
+                    <small>Completa los campos para publicar en el Noticiero Digital</small>
+                </div>
+                <div class="card-body p-4">
+                    <form th:action="@{/noticias/guardar}" th:object="${noticia}" method="post">
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Categoría</label>
+                                <select class="form-select" th:field="*{categoria}" required>
+                                    <option value="" selected disabled>Selecciona una...</option>
+                                    <option value="Deportes">Deportes</option>
+                                    <option value="Academia">Academia</option>
+                                    <option value="Cultura">Cultura</option>
+                                    <option value="Investigación">Investigación</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Fecha Suceso</label>
+                                <input type="date" class="form-control" th:field="*{fecha}" required>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold">País</label>
+                                <input type="text" class="form-control" th:field="*{pais}" placeholder="Ej: Colombia" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold">Departamento</label>
+                                <input type="text" class="form-control" th:field="*{departamento}" placeholder="Ej: Bolívar" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold">Ciudad</label>
+                                <input type="text" class="form-control" th:field="*{ciudad}" placeholder="Ej: Cartagena" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">ID Periodista Responsable</label>
+                                <input type="number" class="form-control" th:field="*{idPeriodista}" placeholder="Tu ID de usuario" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Programa de Emisión</label>
+                                <input type="text" class="form-control" th:field="*{programaEmite}" placeholder="Ej: UDC Radio">
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label fw-bold">Descripción de la Noticia</label>
+                                <textarea class="form-control" th:field="*{descripcion}" rows="4" placeholder="Escribe aquí el contenido de la noticia..." required></textarea>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Nivel de Público</label>
+                                <select class="form-select" th:field="*{nivelPublico}">
+                                    <option value="General">General</option>
+                                    <option value="Estudiantes">Estudiantes</option>
+                                    <option value="Docentes">Docentes</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 d-flex gap-2">
+                            <button type="submit" class="btn btn-success px-5 fw-bold shadow-sm">
+                                <i class="fa-solid fa-floppy-disk me-2"></i>Guardar Noticia
+                            </button>
+                            <a href="/noticias" class="btn btn-outline-secondary px-4 fw-bold">
+                                Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
