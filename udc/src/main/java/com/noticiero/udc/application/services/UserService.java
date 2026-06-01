@@ -90,4 +90,15 @@ public class UserService implements UserCrudUseCase {
         userRepositoryPort.save(usuario);
 
     }
+
+    // Agrega esto al final de tu UserService.java
+    public Usuario ObtenerPorEmail(String emailStr) {
+        // 1. Instanciamos el Value Object a partir del String recibido
+        com.noticiero.udc.domain.valueobjects.UserEmail emailVO = new com.noticiero.udc.domain.valueobjects.UserEmail(emailStr);
+
+        // 2. Buscamos en el puerto y si no existe, lanzamos la excepción correspondente
+        return userRepositoryPort.findByEmail(emailVO)
+                .orElseThrow(() -> new com.noticiero.udc.domain.exceptions.InvalidUserEmailException("Usuario no encontrado con el email: " + emailStr));
+    }
+
 }
