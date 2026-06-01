@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       th:replace="~{layout/base :: layout(~{::title}, ~{::section})}">
 <head>
-    <title>Publicar Noticia | UDC</title>
+    <title th:text="${esEdicion} ? 'Editar Noticia | UDC' : 'Publicar Noticia | UDC'">Publicar Noticia | UDC</title>
 </head>
 <body>
 <section>
@@ -10,11 +10,17 @@
         <div class="col-md-8">
             <div class="card shadow border-0 rounded-4">
                 <div class="card-header bg-primary text-white p-4 rounded-top-4" style="background-color: #003366 !important;">
-                    <h3 class="mb-0 fw-bold"><i class="fa-solid fa-pen-nib me-2"></i>Nueva Noticia</h3>
-                    <small>Completa los campos para publicar en el Noticiero Digital</small>
+                    <h3 class="mb-0 fw-bold">
+                        <i th:class="${esEdicion} ? 'fa-solid fa-pen-to-square me-2' : 'fa-solid fa-pen-nib me-2'"></i>
+                        <span th:text="${esEdicion} ? 'Modificar Noticia' : 'Nueva Noticia'">Nueva Noticia</span>
+                    </h3>
+                    <small th:text="${esEdicion} ? 'Modifica los campos necesarios de la publicación' : 'Completa los campos para publicar en el Noticiero Digital'">Completa los campos...</small>
                 </div>
                 <div class="card-body p-4">
-                    <form th:action="@{/noticias/guardar}" th:object="${noticia}" method="post">
+
+                    <form th:action="${esEdicion} ? @{/noticias/actualizar} : @{/noticias/guardar}" th:object="${noticia}" method="post">
+
+                        <input type="hidden" th:field="*{id}">
 
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -73,7 +79,8 @@
 
                         <div class="mt-4 d-flex gap-2">
                             <button type="submit" class="btn btn-success px-5 fw-bold shadow-sm">
-                                <i class="fa-solid fa-floppy-disk me-2"></i>Guardar Noticia
+                                <i class="fa-solid fa-floppy-disk me-2"></i>
+                                <span th:text="${esEdicion} ? 'Actualizar Cambios' : 'Guardar Noticia'">Guardar Noticia</span>
                             </button>
                             <a href="/noticias" class="btn btn-outline-secondary px-4 fw-bold">
                                 Cancelar
