@@ -22,18 +22,37 @@
 
 <nav class="navbar navbar-expand-lg shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="/noticias">
             <i class="fa-solid fa-newspaper me-2"></i>NOTICIERO UDC
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto align-items-center">
                 <li class="nav-item"><a class="nav-link" href="/noticias">Noticias</a></li>
-                <li class="nav-item"><a class="nav-link" href="/noticias/nuevo">Crear Noticia</a></li>
-                <li class="nav-item ms-lg-3">
-                    <a class="btn btn-udc btn-sm px-4" href="/login">Iniciar Sesión</a>
+
+                <li class="nav-item" th:if="${session.usuarioRol == 'PERIODISTA' or session.usuarioRol == 'ADMIN'}">
+                    <a class="nav-link text-warning fw-semibold" href="/noticias/nuevo">Crear Noticia</a>
+                </li>
+
+                <li class="nav-item" th:if="${session.usuarioRol == 'ADMIN'}">
+                    <a class="nav-link text-info fw-semibold" href="/usuarios"><i class="fa-solid fa-users-gear me-1"></i>Usuarios</a>
+                </li>
+
+                <li class="nav-item ms-lg-3" th:if="${session.usuarioLogueado == null}">
+                    <a class="btn btn-udc btn-sm px-4 shadow-sm" href="/login">Iniciar Sesión</a>
+                </li>
+
+                <li class="nav-item ms-lg-3 d-flex align-items-center gap-2" th:if="${session.usuarioLogueado != null}">
+                    <span class="badge bg-light text-dark py-2 px-3 border shadow-sm">
+                        <i class="fa-solid fa-user me-1 text-primary"></i>
+                        <span th:text="${session.usuarioLogueado.nombre.getValue()}">Usuario</span>
+                        (<small class="fw-bold text-danger" th:text="${session.usuarioRol}"></small>)
+                    </span>
+                    <a class="btn btn-danger btn-sm" href="/logout" title="Cerrar Sesión">
+                        <i class="fa-solid fa-power-off"></i>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -53,38 +72,5 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-
-
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{layout/base :: layout(~{::title}, ~{::section})}">
-<head>
-    <title>Portal de Noticias | UDC</title>
-</head>
-<body>
-<section>
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="fw-bold text-primary">Últimas Noticias</h2>
-        <span class="badge bg-secondary">Mostrando: Todas</span>
-    </div>
-
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <span class="badge bg-warning text-dark mb-2">Deportes</span>
-                        <small class="text-muted">31 Mayo, 2026</small>
-                    </div>
-                    <h4 class="card-title">Equipo de Karate gana Oro</h4>
-                    <p class="card-text text-secondary">Orgullo universitario en los regionales...</p>
-                    <a href="#" class="btn btn-link p-0">Leer más <i class="fa-solid fa-arrow-right small"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 </body>
 </html>
