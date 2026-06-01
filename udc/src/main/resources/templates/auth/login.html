@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Iniciar Sesión | UDC</title>
+</head>
+<body>
+<section>
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-lg border-0 rounded-4 mt-4">
+                <div class="card-header bg-primary text-white text-center p-4 rounded-top-4" style="background-color: #003366 !important;">
+                    <i class="fa-solid fa-circle-user fa-3x mb-2 text-warning"></i>
+                    <h3 class="mb-0 fw-bold">Portal del Noticiero</h3>
+                    <small>Ingresa tus credenciales universitarias</small>
+                </div>
+                <div class="card-body p-4">
+
+                    <div th:if="${error != null}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="fa-solid fa-triangle-exclamation me-2"></i>
+                        <span th:text="${error}">Mensaje de error</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    <form th:action="@{/login}" method="post">
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-bold">Correo Electrónico</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fa-solid fa-envelope text-secondary"></i></span>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="usuario@unicartagena.edu.co" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="password" class="form-label fw-bold">Contraseña</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fa-solid fa-lock text-secondary"></i></span>
+                                <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success fw-bold py-2 shadow-sm">
+                                <i class="fa-solid fa-right-to-bracket me-2"></i>Ingresar al Sistema
+                            </button>
+
+                            <hr class="text-muted my-3">
+
+                            <a th:href="@{/usuarios/nuevo}" class="btn btn-outline-primary fw-bold py-2 shadow-sm">
+                                <i class="fa-solid fa-user-plus me-2"></i>Crear una Cuenta Nueva
+                            </a>
+
+                            <a href="/noticias" class="btn btn-outline-secondary btn-sm border-0 mt-2">
+                                <i class="fa-solid fa-arrow-left me-1"></i> Entrar como Lector Invitado
+                            </a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
