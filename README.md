@@ -103,3 +103,67 @@ Para levantar y probar el proyecto de la Unidad 2, sigue estos pasos:
 ```text
 http://localhost:8080/
 ```
+
+## PETICIONES POSTMAN
+```text
+POST (Login)
+http://localhost:8080/api/usuarios/login
+
+{
+    "email": "",
+    "password": ""
+}
+
+GET (Activar cuenta)
+http://localhost:8080/api/usuarios/verificar?token=AQUÍ_VA_EL_UUID
+
+POST (Registrarse)
+http://localhost:8080/api/usuarios
+{
+    "nombre": "",
+    "email": "",
+    "password": "",
+    "role": "" (LECTOR, PERIODISTA, ADMIN)
+}
+
+GET (Listar Usuarios)
+http://localhost:8080/api/usuarios
+
+GET (Listar Usuario con id)
+http://localhost:8080/api/usuarios/#
+
+PUT (Actualizar Usuario)
+http://localhost:8080/api/usuarios/#
+
+DELETE (Eliminar usuario
+http://localhost:8080/api/usuarios/#
+
+
+
+POST (crear noticia)
+http://localhost:8080/api/noticias
+{
+        "categoria": "",
+        "fecha": "",
+        "pais": "",
+        "departamento": "",
+        "ciudad": "",
+        "idPeriodista": ,
+        "programaEmite": "",
+        "fechaEmision": null,
+        "descripcion": "",
+        "nivelPublico": ""
+    }
+
+
+GET (Listar lista de noticias)
+http://localhost:8080/api/noticias
+
+
+GET (buscar noticia por id)
+http://localhost:8080/api/noticias/#
+
+PUT (Atualizar)
+http://localhost:8080/api/noticias/#
+
+```
